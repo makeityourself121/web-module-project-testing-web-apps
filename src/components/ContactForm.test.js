@@ -107,7 +107,7 @@ test('renders all fields text when all fields are submitted.', async () => {
     userEvent.type(email, 'dharmik121@gmail.com')
 
     const message = screen.getByLabelText(/message/i)
-    userEvent.type(message, 'mess')
+    userEvent.type(message, 'Hello')
 
     const submit=screen.getByRole('button')
     userEvent.click(submit)
@@ -116,11 +116,11 @@ test('renders all fields text when all fields are submitted.', async () => {
         const firstDisplay = screen.queryByText('Dharmik')
         const lastDisplay = screen.queryByText('Savaliya')
         const emailDisplay = screen.queryByText('dharmik121@gmail.com')
-        const messageDisplay = screen.getAllByText('mess')
+        const messageDisplay = screen.queryAllByText('Hello')
 
         expect(firstDisplay).toBeInTheDocument()
         expect(lastDisplay).toBeInTheDocument()
         expect(emailDisplay).toBeInTheDocument()
-        expect(messageDisplay).toBeInTheDocument()
+        expect(messageDisplay[1]).toBeInTheDocument()
     })
 });
